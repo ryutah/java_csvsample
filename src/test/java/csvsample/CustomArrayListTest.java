@@ -19,14 +19,4 @@ public class CustomArrayListTest {
         ints.quickSort((a, b) -> a - b);
         IntStream.rangeClosed(0, 9).forEach(i -> assertThat(ints.get(i), is(i + 1)));
     }
-
-    @Test
-    public void testMergeSort() {
-        CustomArrayList<Integer> ints = new CustomArrayList<>();
-        ints.addAll(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
-        Collections.shuffle(ints);
-
-        ints.mergeSort((a, b) -> a - b);
-        IntStream.rangeClosed(0, 9).forEach(i -> assertThat(ints.get(i), is(i + 1)));
-    }
 }
