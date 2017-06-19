@@ -20,7 +20,7 @@ public class Header {
     }
 
     public Optional<String> header(int index) {
-        return null;
+        return this.headers.size() > index ? Optional.of(this.headers.get(index)) : Optional.empty();
     }
 
     public Optional<Integer> index(String name) {

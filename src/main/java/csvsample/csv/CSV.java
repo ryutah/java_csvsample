@@ -1,16 +1,28 @@
 package csvsample.csv;
 
+import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.Queue;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import csvsample.reader.CSVReader;
 
 public class CSV implements Collection<Row> {
     private Header    header;
     private List<Row> rows;
+
+    public CSV(CSVReader reader) {
+        Queue<String[]> csv = new ArrayDeque<>(reader.read());
+        this.header = new Header(csv.poll());
+        this.rows = csv.stream().map(r -> new Row(this.header, r)).collect(Collectors.toList());
+    }
 
     public Header header() {
         return this.header;
@@ -18,6 +30,10 @@ public class CSV implements Collection<Row> {
 
     public List<Row> rows() {
         return this.rows();
+    }
+
+    public Optional<Row> row(int index) {
+        return this.rows.size() > index ? Optional.of(this.rows.get(index)) : Optional.empty();
     }
 
     @Override

@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import csvsample.csv.reader.CSVReadException;
-
 public class StringCSVReader implements CSVReader {
     private String csv;
 
@@ -24,9 +22,10 @@ public class StringCSVReader implements CSVReader {
         List<String[]> csv = Arrays.stream(rows)
                                    .map(r -> r.split(","))
                                    .collect(Collectors.toList());
-        if (!this.isValid(csv)) {
-            throw new CSVReadException();
-        }
+
+        if (!this.isValid(csv))
+            throw new CSVReadException("Invalid csv");
+
         return csv;
     }
 }
