@@ -13,6 +13,6 @@ public class FileCSVReaderTest {
         CSVReader reader = new FileCSVReader(ClassLoader.getSystemResource("test.csv").getFile());
         List<String[]> csv = reader.read();
         assertThat(csv.size(), is(10));
-        assertThat(csv.get(1), is(new String[] { "033122", "黒岩卓誠", "M", "あーりん", "4", "26", "ffffff82" }));
+        assertThat(csv.get(1), is(new String[] { "033122", "トラッシュ太郎", "M", "あーりん", "4", "26", "ffffff82" }));
     }
 }
